@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/css/menu.css">
+    <link rel="stylesheet" href="/css/table.css">
+    <title>Basket</title>
+</head>
+<body>
+    {{> menu}}
+     Basket
+    <select id="type_basket"> <!--Supplement an id here instead of using 'name'-->
+        <option value="1">Не Отправленые</option>
+        <option value="0">Отправленые</option>
+    </select>
+    <button id="find_basket">Find</button>
+    <div id="table_basket">
+    </div>
+
+
+     <script src="/font/basket.js"></script>
+</body>
+</html>
