@@ -1,4 +1,5 @@
 const router = require('express').Router();
+const crud = require('../DB/crud/index')
 
 
 router.get('/main',(req,res)=>{
@@ -9,6 +10,9 @@ router.get('/good',(req,res)=>{
 });
 router.get('/basket',(req,res)=>{
     res.render('basket.hbs');
+});
+router.get('/basketinfo/:id',(req,res)=>{
+    res.render('basketInfo.hbs',{data:req.params['id']});
 });
 
 module.exports = router;

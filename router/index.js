@@ -9,7 +9,7 @@ router.post('/putGood',controller.putGood);
 router.post('/deleteGood',controller.deleteGood);
 router.post('/updateGood',controller.updateGood);
 router.post('/getAllBasket',controller.getAllBasket);
-router.post('/getBasketByid',controller.getBasketByid);
+router.get('/getBasketByid/:id',controller.getBasketByid);
 router.post('/sendBasket',controller.sendBasket);
 router.post('/deleteBasket',controller.deleteBasket);
 

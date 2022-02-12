@@ -85,7 +85,7 @@ class CRUD {
             reject(e)
         });
     });
-    getBasketById = ({customer_id}) => new Promise((resolve,reject)=>{
+    getBasketById = (customer_id) => new Promise((resolve,reject)=>{
         Customer.findAll({raw:false,where:{
                 id_customer:customer_id
             },include:[{
