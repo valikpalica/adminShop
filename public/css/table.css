@@ -14,3 +14,8 @@ td{
     border-bottom: 1px solid black; 
 }
 
+.table img{
+    width: 100px;
+    height: 100px;
+}
+

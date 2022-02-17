@@ -33,8 +33,8 @@ class Controller{
         });
     };
     putGood = (req,res) =>{
-        crud.putGood(req.body).then(data=>{
-            res.status(200).json(data)
+        crud.putGood(req.body,req.file.originalname).then(data=>{
+            res.redirect('/view/good');
         }).catch(e=>{
             console.log(e);
             res.status(400).json(e)
@@ -85,6 +85,13 @@ class Controller{
         }).catch(e=>{
             res.status(400).json(e);
         })
+    }
+    Setorder = (req,res) =>{
+        crud.Setorder(req.body).then(data=>{
+            res.status(200).json(data);
+        }).catch(e=>{
+            res.status(400).json(e)
+        });
     }
 };
 

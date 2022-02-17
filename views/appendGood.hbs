@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/css/menu.css">
+    <title>AppendGood</title>
+</head>
+<body>
+    {{>menu}}
+    <div>
+        <form action="/info/putGood" method="POST" enctype="multipart/form-data">
+            <label>type_goods</label>
+            <input type="text" name="type_goods">
+            <label>name_goods</label>
+            <input type="text" name="name_goods">
+            <label>cost_goods</label>
+            <input type="text" name="cost_goods">
+            <label>country</label>
+            <input type="text" name="country">
+            <label>disconts</label>
+            <input type="text" name="disconts">
+            <input type="file" name="photo"/>
+            <button type="submit">
+                Send
+            </button>
+        </form>
+    </div>
+</body>
+</html>
