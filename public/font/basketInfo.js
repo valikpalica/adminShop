@@ -8,6 +8,7 @@ document.addEventListener("DOMContentLoaded", async ()=>{
             throw new Error(data);
         }
     }).then(result=>{
+        console.log(result);
         create_table_info(result);
     }).catch(e=>{
         console.log(e);

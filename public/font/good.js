@@ -66,8 +66,6 @@ create_table = (array) =>{
         td_cost_good.textContent = item.cost_goods;
         let td_country = document.createElement('td');
         td_country.textContent = item.country;
-        let td_discont = document.createElement('td');
-        td_discont.textContent = item.discont?item.discont:''
         let img = document.createElement('img');
         img.src = `/${item.imageSrc}`;
         let button_delete = document.createElement('button');
@@ -78,7 +76,7 @@ create_table = (array) =>{
         let link_for_update_good = document.createElement('a');
         link_for_update_good.textContent = 'Update';
         link_for_update_good.href = `/view/update/${item.id_goods}`;
-        tr.append(td_type_good,td_name_good,td_cost_good,td_country,td_discont,img,button_delete,link_for_update_good);
+        tr.append(td_type_good,td_name_good,td_cost_good,td_country,img,button_delete,link_for_update_good);
         table.append(tr);
     })
     div.replaceChild(table,div.childNodes[0]);

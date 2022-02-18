@@ -37,12 +37,11 @@ class CRUD {
             reject(e)
         })
     });
-    putGood = ({type_goods,name_goods,cost_goods,country,disconts},imageSrc) => new Promise((resolve,reject)=>{
+    putGood = ({type_goods,name_goods,cost_goods,country},imageSrc) => new Promise((resolve,reject)=>{
         Goods.create({type_goods,
                 name_goods,
                 cost_goods,
                 country,
-                disconts,
                 imageSrc
             }).then(data=>{
                 if(data) resolve(data)
@@ -104,7 +103,7 @@ class CRUD {
             if(data.length>0){
                 let sum = 0;
                 data[0].baskets.map(item=>{
-                    item.dataValues['sum_good'] = Math.round(item.count_goods * item.good.cost_goods);
+                    item.dataValues['sum_good'] = Math.round((item.count_goods * item.good.cost_goods)*100)/100;
                     sum+=item.dataValues['sum_good'];
                 });
                 data[0].dataValues['all_sum'] = sum;

@@ -24,10 +24,6 @@ const Goods = sequlize.define('goods',{
         type:Sequelize.STRING,
         allowNull:false
     },
-    disconts:{
-        type:Sequelize.INTEGER,
-        allowNull:true
-    },
     imageSrc:{
         type:Sequelize.STRING,
         allowNull:true,
