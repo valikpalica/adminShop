@@ -1,6 +1,8 @@
 const Basket = require('../modal/basket');
 const Customer = require('../modal/customer');
 const Goods = require('../modal/goods');
+const fs = require('fs');
+const path = require('path');
 
 class CRUD {
     getAllGoods = () => new Promise((resolve,reject)=>{
@@ -49,8 +51,12 @@ class CRUD {
             reject(e)
         })
     });
-    deleteGood = ({id_goods}) => new Promise((resolve,reject)=>{
+    deleteGood = ({id_goods,imageSrc}) => new Promise((resolve,reject)=>{
+        if(imageSrc!==null){
+            fs.unlinkSync(path.join(path.resolve(__dirname,'../..'),'photo',imageSrc));
+        }
         Goods.destroy({where:{id_goods}}).then(data=>{
+            console.log(data);
             if(data) resolve(data);
             else reject(false);
         }).catch(e=>{

@@ -6,7 +6,6 @@ document.addEventListener("DOMContentLoaded", async ()=>{
         message_error(e);
     })
 });
-
 getType = () =>new Promise((resolve,reject)=>{
     fetch('/info/getGoodType').then(data=>{
         return data.json();
@@ -21,8 +20,6 @@ getType = () =>new Promise((resolve,reject)=>{
         reject(e);
     })
 });
-
-
 document.getElementById('find').addEventListener('click',()=>{
     let type_good  = document.getElementById('selector_type_good').value;
     getGoods(type_good).then(data=>{
@@ -34,8 +31,6 @@ document.getElementById('find').addEventListener('click',()=>{
         console.log(e);
     });
 });
-
-
 getGoods = (type_good) => new Promise((resolve,reject)=>{
     if(type_good){
         fetch('/info/getGoodByType',{
@@ -57,7 +52,6 @@ getGoods = (type_good) => new Promise((resolve,reject)=>{
         })
     }
 });
-
 create_table = (array) =>{
     let div = document.getElementById('tables_div');
     let table = document.createElement('table');
@@ -81,12 +75,14 @@ create_table = (array) =>{
         button_delete.addEventListener('click',()=>{
             delete_good(item);
         });
-        tr.append(td_type_good,td_name_good,td_cost_good,td_country,td_discont,img,button_delete);
+        let link_for_update_good = document.createElement('a');
+        link_for_update_good.textContent = 'Update';
+        link_for_update_good.href = `/view/update/${item.id_goods}`;
+        tr.append(td_type_good,td_name_good,td_cost_good,td_country,td_discont,img,button_delete,link_for_update_good);
         table.append(tr);
     })
     div.replaceChild(table,div.childNodes[0]);
 };
-
 create_selector = (array) =>{
     let div = document.getElementById('type_good');
     let selector = document.createElement('select');
@@ -101,22 +97,18 @@ create_selector = (array) =>{
     });
     div.replaceChild(selector,div.childNodes[0]);
 }
-
-
 message_error = (e) =>{
     let div = document.getElementById('tables_div');
     div.textContent = e;
 }
-
-
 delete_good = (item) =>{
-    let {id_goods} = item;
+    let {id_goods,imageSrc} = item;
     let type_goods  = document.getElementById('selector_type_good').value;
     fetch('/info/deleteGood',{method:'POST',
     headers:{
         'Content-Type': 'application/json'
     },
-    body:JSON.stringify({id_goods})
+    body:JSON.stringify({id_goods,imageSrc})
     }).then(data=>{
         if(data.status === 200){
                 getGoods(type_goods).then(data=>{
@@ -143,4 +135,3 @@ delete_good = (item) =>{
         console.log(e);
     })
 }
-

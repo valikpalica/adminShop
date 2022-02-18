@@ -8,8 +8,6 @@ const view = require('./router/view_router');
 const user = require('./router/router');
 const hbs = require("hbs");
 
-
-
 process.on('SIGTERM',()=>{
     app.close(()=>{
         console.log('server has been terminated');
@@ -35,6 +33,5 @@ try {
         })
     });
 } catch (error) {
-
     process.kill(process.pid, 'SIGTERM')
 }

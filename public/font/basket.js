@@ -1,4 +1,3 @@
-
 document.getElementById('find_basket').addEventListener("click",()=>{
     getBasket().then(data=>{
         create_table(data);
@@ -7,7 +6,6 @@ document.getElementById('find_basket').addEventListener("click",()=>{
         console.log(e);
     })
 });
-
 getBasket = () => new Promise((resolve,reject)=>{
     fetch('/info/getAllBasket',{
         method:"POST",
@@ -24,12 +22,9 @@ getBasket = () => new Promise((resolve,reject)=>{
             throw new Error(await data.json());
         }
     }).catch(e=>{
-        console.error(e);
         reject(e);
     }); 
 });
-
-
 create_table = (array) =>{
     console.log(array);
     let div = document.getElementById('table_basket');
@@ -66,12 +61,10 @@ create_table = (array) =>{
     })
     div.replaceChild(table,div.childNodes[0]);
 }
-
 message_error = (e) =>{
     let div = document.getElementById('table_basket');
     div.textContent = e;
 } 
-
 delete_basket = (id) => new Promise((resolve,reject)=>{
     fetch('/info/deleteBasket',{
         method:'POST',
@@ -85,6 +78,3 @@ delete_basket = (id) => new Promise((resolve,reject)=>{
         reject(e)
     })
 });
-
-    
-

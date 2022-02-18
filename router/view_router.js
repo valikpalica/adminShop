@@ -17,5 +17,8 @@ router.get('/basketinfo/:id',(req,res)=>{
 router.get('/appendGood',(req,res)=>{
     res.render('appendGood.hbs');
 })
+router.get('/update/:id',(req,res)=>{
+    res.render('update.hbs',{data:req.params['id']});
+});
 
 module.exports = router;
