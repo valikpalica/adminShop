@@ -33,7 +33,7 @@ class Controller{
         });
     };
     putGood = (req,res) =>{
-        crud.putGood(req.body,req.file.originalname).then(data=>{
+        crud.putGood(req.body,req.file? req.file.originalname : null).then(data=>{
             res.redirect('/view/appendGood');
         }).catch(e=>{
             console.log(e);

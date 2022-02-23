@@ -126,10 +126,12 @@ class CRUD {
             if(data.length>0){
                 let sum = 0;
                 data[0].baskets.map(item=>{
-                    item.dataValues['sum_good'] = Math.round((item.count_goods * item.good.cost_goods)*100)/100;
+                    item.dataValues['sum_good'] = Math.round((item.count_goods * item.good.cost_goods)*1000)/1000;
                     sum+=item.dataValues['sum_good'];
                 });
-                data[0].dataValues['all_sum'] = sum;
+                // console.log(sum);
+                // console.log(Math.round(sum*1000)/1000)
+                data[0].dataValues['all_sum'] = Math.round(sum*1000)/1000;
                 resolve(data[0]);
             }
             else{

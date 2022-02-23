@@ -6,7 +6,7 @@ const startDB = () => new Promise((resolve,reject)=>{
     } catch (error) {
         reject(`Error with association DB ${error}`);
     }
-    sequelize.sync(/*{force:true}*/).then(res=>{
+sequelize.sync({/*force:true*/}).then(res=>{
         resolve(true);
     }).catch(e=>{
         reject(`Error with connection DB ${e}`)
