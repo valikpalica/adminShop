@@ -34,7 +34,7 @@ class Controller{
     };
     putGood = (req,res) =>{
         crud.putGood(req.body,req.file.originalname).then(data=>{
-            res.redirect('/view/good');
+            res.redirect('/view/appendGood');
         }).catch(e=>{
             console.log(e);
             res.status(400).json(e)
@@ -49,8 +49,8 @@ class Controller{
         })
     }
     updateGood = (req,res) =>{
-        crud.updateGood(req.body).then(data=>{
-            res.status(200).json(data)
+        crud.updateGood(req.body,req.file).then(data=>{
+            res.status(200).redirect('/view/good')
         }).catch(e=>{
             console.log(e);
             res.status(400).json(e)

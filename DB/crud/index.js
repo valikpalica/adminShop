@@ -52,7 +52,11 @@ class CRUD {
     });
     deleteGood = ({id_goods,imageSrc}) => new Promise((resolve,reject)=>{
         if(imageSrc!==null){
-            fs.unlinkSync(path.join(path.resolve(__dirname,'../..'),'photo',imageSrc));
+            try {
+                fs.unlinkSync(path.join(path.resolve(__dirname,'../..'),'photo',imageSrc));
+            } catch (error) {
+                console.error(error);
+            }
         }
         Goods.destroy({where:{id_goods}}).then(data=>{
             console.log(data);
@@ -62,20 +66,39 @@ class CRUD {
             reject(e);
         })
     });
-    updateGood = ({option,value,id_goods}) => new Promise((resolve,reject)=>{
-        Goods.findByPk(id_goods).then(data=>{
-            data[option] = value;
-            data.save().then((res,err)=>{
-                if(err) reject(err);
-                else {
-                    resolve(res);
+    updateGood = (body,file) => new Promise((resolve,reject)=>{
+        let {type_goods,name_goods,cost_goods,id_goods,country,imageSrc:old_image} = body;
+        let new_image = old_image;
+        console.log(old_image);
+        if(file){
+            try {
+                if(old_image.length>0){
+                    fs.unlinkSync(path.join(path.resolve(__dirname,'../..'),'photo',old_image));
                 }
-            }).catch(e=>{
-                reject(e)
-            })
+                new_image = file.originalname;
+            } catch (error) {
+                console.error(error);
+            }
+        }
+        console.log(new_image);
+        Goods.findByPk(id_goods).then(async (data)=>{
+            try {
+                data.set({
+                    type_goods,
+                    name_goods,
+                    cost_goods,
+                    country,
+                    imageSrc:new_image
+                });
+                let res = await data.save();
+                console.log(res);
+                if(res) resolve(res);
+            } catch (error) {
+                throw new Error(error);
+            }
         }).catch(e=>{
             reject(e);
-        })
+        });
     });
     getAllBasket = ({status}) => new Promise((resolve,reject)=>{
         Customer.findAll({raw:false,

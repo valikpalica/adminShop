@@ -34,12 +34,24 @@ getGood = (id) => new Promise((resolve,reject)=>{
 
 
 createFormWithData = (obj) =>{
+    let hidden_input = document.createElement('input');
+    hidden_input.type = 'text';
+    hidden_input.value = obj.id_goods;
+    hidden_input.name = 'id_goods';
+    hidden_input.hidden = true;
+    let hidden_image = document.createElement('input');
+    hidden_image.type = 'text';
+    hidden_image.value = obj.imageSrc;
+    hidden_image.name = 'imageSrc';
+    hidden_image.hidden = true;
     let form = document.getElementById('information');
-    let type_good = createDivWithInput('Тип товару',obj.type_goods);
-    let name_good = createDivWithInput("Назва товару",obj.name_goods);
-    let cost_good = createDivWithInput('Ціна товару',obj.cost_goods);
-    let imageSrc = createDivWithInput('Посилання на картинку',obj.imageSrc);
-    let country = createDivWithInput('Країна',obj.country);
+    let type_good = createDivWithInput('Тип товару',obj.type_goods,'type_goods');
+    let name_good = createDivWithInput("Назва товару",obj.name_goods,'name_goods');
+    let cost_good = createDivWithInput('Ціна товару',obj.cost_goods,'cost_goods');
+    let imageSrc = document.createElement('input');
+    imageSrc.type = 'file';
+    imageSrc.setAttribute('name','photo');
+    let country = createDivWithInput('Країна',obj.country,'country');
     let image = document.createElement('img');
     let div_img = document.createElement('div');
     div_img.className = 'div_img';
@@ -48,21 +60,21 @@ createFormWithData = (obj) =>{
     let butoon = document.createElement('button');
     butoon.textContent = 'Send';
     butoon.type = 'submit';
-    form.append(type_good,name_good,cost_good,country,imageSrc,div_img,butoon);
+    form.append(type_good,name_good,cost_good,country,div_img,imageSrc,hidden_input,hidden_image,butoon);
 }
 
-createDivWithInput = (placeholder,value) =>{
+createDivWithInput = (placeholder,value,name) =>{
     let div = document.createElement('div');
     div.className = 'data';
     let input = document.createElement('input');
     input.type = 'text'
-    input.value = value
+    input.value = value;
+    input.name = name;
     let lable = document.createElement('lable');
     lable.textContent = placeholder;
     div.append(lable,input);
     return div;
 };
-
 
 
 
